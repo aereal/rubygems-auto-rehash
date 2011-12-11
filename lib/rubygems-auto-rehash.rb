@@ -7,19 +7,25 @@ module Rubygems
 end
 
 auto_rehash = -> installer do
-  if has_rbenv?
-    installer.say 'rbenv rehash'
-    system 'rbenv', 'rehash'
-  end
+  if has_executables?(installer.spec)
+    if has_rbenv?
+      installer.say 'rbenv rehash'
+      system 'rbenv', 'rehash'
+    end
 
-  if in_zsh?
-    installer.say 'rehash'
-    system 'rehash'
+    if in_zsh?
+      installer.say 'rehash'
+      system 'rehash'
+    end
   end
 end
 
 Gem.post_install(&auto_rehash)
 Gem.post_uninstall(&auto_rehash)
+
+def has_executables?(spec)
+  !spec.executables.empty?
+end
 
 def has_rbenv?
   ENV['RBENV_ROOT'] || File.exist?(File.expand_path("~/.rbenv")) && `which rbenv`
