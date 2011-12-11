@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = %q{run `rehash' command if rbenv or zsh installed}
   s.description = %q{run `rehash' command if rbenv or zsh installed}
-  s.date        = "2011-12-13"
 
   s.rubyforge_project = "rubygems-auto-rehash"
 
