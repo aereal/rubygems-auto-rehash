@@ -10,11 +10,11 @@ auto_rehash = -> installer do
   if has_rbenv?
     installer.say 'rbenv rehash'
     system 'rbenv', 'rehash'
+  end
 
-    if in_zsh?
-      installer.say 'rehash'
-      system 'rehash'
-    end
+  if in_zsh?
+    installer.say 'rehash'
+    system 'rehash'
   end
 end
 
